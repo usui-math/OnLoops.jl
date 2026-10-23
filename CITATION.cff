@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, together with the original work by Zin Arai."
+title: "OnLoops.jl"
+abstract: "A Julia re-implementation of the computer-assisted methods of Zin Arai for the complex Hénon map, used to compute the monodromy actions of four conjugate-symmetric loops in the hyperbolic horseshoe locus."
+type: software
+authors:
+  - family-names: Usui
+    given-names: Toshiki
+version: 0.1.0
+license: MIT
+references:
+  - type: article
+    authors:
+      - family-names: Arai
+        given-names: Zin
+    title: "On loops in the hyperbolic locus of the complex Hénon map and their monodromies"
+    journal: "Physica D: Nonlinear Phenomena"
+    volume: 334
+    start: 133
+    end: 140
+    year: 2016
+    doi: "10.1016/j.physd.2016.02.006"
+  - type: data
+    authors:
+      - family-names: Arai
+        given-names: Zin
+    title: "Supplemental materials (data, programs) for \"On loops in the hyperbolic locus of the complex Hénon map and their monodromies\""
+    url: "https://github.com/zin-arai/zin-arai.github.io/tree/main/loops"

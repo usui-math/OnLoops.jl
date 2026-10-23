@@ -1,0 +1,40 @@
+name: CPU checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        julia: ['1.12', '1.13']
+    runs-on: ${{ matrix.os }}
+    env:
+      JULIA_PKG_PRECOMPILE_AUTO: '0'
+      JULIA_NUM_PRECOMPILE_TASKS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.julia }}
+      - uses: julia-actions/cache@v2
+      - name: Instantiate pinned environment
+        run: julia --startup-file=no --project=. -e 'using Pkg; Pkg.instantiate()'
+      - name: Single-thread CPU tests
+        run: julia --startup-file=no --project=. --threads=1 test/runtests.jl
+      - name: Multi-thread CPU tests
+        run: julia --startup-file=no --project=. --threads=2 test/runtests.jl
+      - name: Proof-step regression checks
+        run: julia --startup-file=no --project=. --threads=1 test/loop_proof.jl
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check saved results
+        run: python experiments/check_loop_artifacts.py
