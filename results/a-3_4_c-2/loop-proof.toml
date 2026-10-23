@@ -1,0 +1,58 @@
+flipped_words = ["000100", "000101", "001100", "001101", "100100", "100101", "100111", "101100", "101101", "101111"]
+involution = true
+minimal_windows = [[-2, 3]]
+minimum_margin = "9350781885961889081043365605587149539152990584516502787328773/1018002241156592401386501123423681617162667890137888497925619712"
+name = "a-3_4_c-2"
+pieces = 152
+status = "proved"
+
+[classification]
+anticipation = 3
+input_overlap = 0
+input_unlabelled = 30
+memory = 2
+output_overlap = 0
+retained_vertices = 11742
+words = 64
+
+[environment]
+julia = "1.13.0"
+seconds = 943.25
+threads = 1
+
+    [environment.source_sha256]
+    "Manifest.toml" = "3b6790d0e5f4ec3d6300b81229349526bec2849d84474e56016465a458da18d0"
+    "experiments/certify_symmetric_loops.jl" = "a605e3990878012ae7b1f9f7b4f399b4de53fea8e6e6fcfd5be17149df18f31a"
+    "experiments/loop_proof/classify.jl" = "77547686f1c5026392af73ab9d98f215678c87adc77b9b1baba4b951952028c6"
+    "experiments/loop_proof/common.jl" = "e660d702623cace7b86f972dedc92293bdc936a75bd768098ace1c059bc22650"
+    "experiments/loop_proof/cone_forms.jl" = "cc73a3fcea21451dcdacc2a14e6352d420c212782042bc65c65e9848c39ca45f"
+    "experiments/loop_proof/cover.jl" = "661dcefee089b4aac65d47db131c23ea85191abc909eb370eaa7cb813747ea35"
+    "experiments/loop_proof/loop.jl" = "126ee35959eda46f382422f1b5633f798eeac3f1730b20a11edfe7e836394a21"
+    "experiments/loop_proof/rule.jl" = "6b3b7b29629deba414284b6430874cf73de1f706c52ecdb5adb28210458ff27a"
+    "experiments/loop_proof/transport.jl" = "802aaa7a1bbe5fefb517be07e3989433659cc2d3acf2abcc2dd58ef71576257b"
+    "src/OnLoops.jl" = "6b8552699019f12fb3ef6faaa2c57dbab6df476c3e53363f77905632de710396"
+    "src/adaptive.jl" = "29aaea58a307e915d707536f5e01252046e9fd9aef2f11ef0c4c551e15fd9327"
+    "src/cone_field.jl" = "51ab328b96c3cc4b93d54b1d8063861c36753e0cede961e7717c0d7b63d4e9aa"
+    "src/henon_data.jl" = "62c3b8819ae188c91c6a06d3a1aaf3893db1cdb8dd5bce7500b90670c587b3a0"
+    "src/hyperbolicity.jl" = "f12bc767f52d3201562bca9be69ee69cb99a76a3dd4823f19c782fd9aea08853"
+    "src/monodromy.jl" = "203f58d5a5f751985deccc36c424c8fb4063256264a84629a58c344ae9fd5d05"
+    "src/sets_graphs.jl" = "7f78baf88d3e1584f768c154570d19dd3ce88a399ba42140812b048e646c6a45"
+
+[loop]
+points_a_re_a_im_c_re_c_im = [["-3/4", "0/1", "-8/1", "0/1"], ["-3/4", "0/1", "-8/1", "6/1"], ["-3/4", "0/1", "-2/1", "6/1"], ["-3/4", "0/1", "-2/1", "0/1"], ["-3/4", "0/1", "-2/1", "-6/1"], ["-3/4", "0/1", "-8/1", "-6/1"], ["-3/4", "0/1", "-8/1", "0/1"]]
+times = ["0/1", "1/6", "1/3", "1/2", "2/3", "5/6", "1/1"]
+
+[spec]
+T = "6/1"
+a = "-3/4"
+c0 = "-8/1"
+ct = "-2/1"
+
+[transport]
+collision_components = 0
+components = 31
+contact_candidates = 45651049
+seedless_boxes = 6
+seedless_components = 5
+terminal_collisions = 0
+vertices = 343875
