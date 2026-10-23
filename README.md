@@ -34,8 +34,8 @@ numbered parameter region.
 
 The computed action $\rho = h_1 \circ h_0^{-1}$ is given by `word-table.tsv`:
 for every word $s_{-m} \cdots s_n$ of the window, the symbol $\rho(s)_0$.
-Symbol $0$ means $\operatorname{Re} y > 0$ and symbol $1$ means
-$\operatorname{Re} y < 0$. "Flipped words" are the words with
+Symbol $0$ means $\mathop{\mathrm{Re}} y > 0$ and symbol $1$ means
+$\mathop{\mathrm{Re}} y < 0$. "Flipped words" are the words with
 $\rho(s)_0 \ne s_0$; they are listed in `loop-proof.toml`. In all four cases
 the action is an involution, as checked on every context of twice the window.
 The minimal window is the shortest sub-window on which the table is still a
@@ -48,7 +48,7 @@ markers listed for its region in Table 1 of [3].
 | Claimed by the computation (this repository) | Proved or cited in [3], Appendix B |
 | --- | --- |
 | Exact rational checks of the loop (S0) and of the partition of the right edge (S1). | (i) The cone condition implies uniform hyperbolicity on the chain recurrent set $R(H_p)$ ([3], B.2; [1], Theorem 9 and Lemma 11). |
-| On every closed piece of the right edge, a closed-box enclosure of $K_p$ whose edges all satisfy the cone condition with a positive exact margin (S2, S3). | (ii) $\operatorname{Re} y \ne 0$ on $K_{a,c}$ in HOV with $\operatorname{Re} c \le 0$, so the coding by the sign of $\operatorname{Re} y$ continues there ([3], Lemma B.1). |
+| On every closed piece of the right edge, a closed-box enclosure of $K_p$ whose edges all satisfy the cone condition with a positive exact margin (S2, S3). | (ii) $\mathop{\mathrm{Re}} y \ne 0$ on $K_{a,c}$ in HOV with $\mathop{\mathrm{Re}} c \le 0$, so the coding by the sign of $\mathop{\mathrm{Re}} y$ continues there ([3], Lemma B.1). |
 | Transport of the two labels through the space-time enclosure (S5). | (iii) $R$-structural stability and $K_p = R(H_p)$, giving the horseshoe along the loop (S4; [3], B.2; [1], Corollary 6). |
 | At the midpoint, every word touches exactly one conjugated label (S6), and the resulting rule (S7). | (iv) $\rho(\gamma) = h \circ \kappa \circ h^{-1}$, which reduces the action to the upper half of the loop and the midpoint classification ([3], (B.1); [1], proof of Theorem 3). |
 
@@ -67,7 +67,7 @@ The entry point is [experiments/certify_symmetric_loops.jl](experiments/certify_
 | S1 | The pieces in `parts.tsv` cover $[0, T]$ of the right edge $c = c_t + iu$ without gaps. | `read_pieces`, `require_contiguous` (`loop.jl`) |
 | S2 | For every parameter $p$ of a piece, every bounded orbit lies in the boxes of a closed-box graph and follows its edges. The graph is rebuilt from the whole region $[-r, r]^4$ ($r$ from [1], Lemma 11) at each run. | `global_cover`, `shrink_cover`, `shrink_edge` (`cover.jl`); `outer_graph`, `graph_core` (`src/sets_graphs.jl`); `henon_radius` (`src/henon_data.jl`) |
 | S3 | For Hermitian forms $Q_k$ on the cells and every edge $(k, j)$: $M(x,a)^* Q_j M(x,a) - Q_k \succeq \varepsilon I$ with $\varepsilon > 0$, where $M(x, a) = \begin{pmatrix} 2x & -a \\ 1 & 0 \end{pmatrix}$, computed in exact rational arithmetic. | `exact_cone_margin` (`cone_forms.jl`); `_cone_parameter_margin` (`src/cone_field.jl`) |
-| S5 | The labels $\operatorname{Re} y > 0$ and $\operatorname{Re} y < 0$ at $u = T$ are carried down to $u = 0$ through the connected components of the closed-box contact graph of all pieces. | `transport_box_partitions` (`transport.jl`) |
+| S5 | The labels $\mathop{\mathrm{Re}} y > 0$ and $\mathop{\mathrm{Re}} y < 0$ at $u = T$ are carried down to $u = 0$ through the connected components of the closed-box contact graph of all pieces. | `transport_box_partitions` (`transport.jl`) |
 | S6 | At the midpoint (level 8), a word is assigned output $b$ only if the enclosure of its cylinder does not touch the conjugate of the enclosure of label $1-b$ (opposite-label exclusion). Windows are tried from the smallest; the first fully determined one is used. | `classify_midpoint_rule` (`classify.jl`); `_cylinder_indices` (`src/monodromy.jl`) |
 | S7 | Every word touches exactly one label; involution check; minimal windows. | `rule_from_table`, `involution_check`, `minimal_windows` (`rule.jl`) |
 
