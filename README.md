@@ -5,7 +5,7 @@ loops of the complex Hénon map
 
 $$H_{a,c}(x, y) = (x^2 + c - a y,\ x),$$
 
-used in the paper this software accompanies.
+used for Proposition 5.2 and Appendix B of [[3]](#references).
 
 OnLoops.jl is a Julia re-implementation of the computational methods of
 Zin Arai's paper [[1]](#references), written with reference to the author's
@@ -22,13 +22,15 @@ $$c_0 \to c_0 + iT \to c_t + iT \to c_t \to c_t - iT \to c_0 - iT \to c_0,$$
 
 so $\gamma(1-t) = \overline{\gamma(t)}$ and the loop passes through the
 *midpoint* $(a, c_t)$ at $t = 1/2$. The basepoint $(a, c_0)$ is real.
+In [3] the loop is $\gamma_P$, $a = a_P$ and $c_t = c_P$, where $P$ is the
+numbered parameter region.
 
-| Name (`results/<name>/`) | Midpoint $(a, c_t)$ | $c_0$ | $T$ | Pieces | Minimum exact margin | Window $[-m, n]$ | Minimal window | Flipped words |
-| --- | --- | ---: | ---: | ---: | --- | --- | --- | ---: |
-| `a-19_40_c-7_4` | $(-19/40, -7/4)$ | $-6$ | $4$ | 120 | $> 0.0197$ | $[-2, 4]$ (128 words) | $[-2, 4]$ | 18 |
-| `a-1_c-7_2` | $(-1, -7/2)$ | $-10$ | $29/4$ | 172 | $> 0.00228$ | $[-3, 4]$ (256 words) | $[-3, 3]$ | 32 |
-| `a-3_4_c-2` | $(-3/4, -2)$ | $-8$ | $6$ | 152 | $> 0.00918$ | $[-2, 3]$ (64 words) | $[-2, 3]$ | 10 |
-| `a51_80_c-7_2` | $(51/80, -7/2)$ | $-7$ | $17/4$ | 124 | $> 0.0512$ | $[-2, 3]$ (64 words) | $[-2, 3]$ | 2 |
+| Region $P$ in [3] | Name (`results/<name>/`) | Midpoint $(a, c_t)$ | $c_0$ | $T$ | Pieces | Minimum exact margin | Window $[-m, n]$ | Minimal window | Flipped words |
+| ---: | --- | --- | ---: | ---: | ---: | --- | --- | --- | ---: |
+| 2 | `a51_80_c-7_2` | $(51/80, -7/2)$ | $-7$ | $17/4$ | 124 | $> 0.0512$ | $[-2, 3]$ (64 words) | $[-2, 3]$ | 2 |
+| 4 | `a-3_4_c-2` | $(-3/4, -2)$ | $-8$ | $6$ | 152 | $> 0.00918$ | $[-2, 3]$ (64 words) | $[-2, 3]$ | 10 |
+| 5 | `a-19_40_c-7_4` | $(-19/40, -7/4)$ | $-6$ | $4$ | 120 | $> 0.0197$ | $[-2, 4]$ (128 words) | $[-2, 4]$ | 18 |
+| 7 | `a-1_c-7_2` | $(-1, -7/2)$ | $-10$ | $29/4$ | 172 | $> 0.00228$ | $[-3, 4]$ (256 words) | $[-3, 3]$ | 32 |
 
 The computed action $\rho = h_1 \circ h_0^{-1}$ is given by `word-table.tsv`:
 for every word $s_{-m} \cdots s_n$ of the window, the symbol $\rho(s)_0$.
@@ -37,16 +39,18 @@ $\operatorname{Re} y < 0$. "Flipped words" are the words with
 $\rho(s)_0 \ne s_0$; they are listed in `loop-proof.toml`. In all four cases
 the action is an involution, as checked on every context of twice the window.
 The minimal window is the shortest sub-window on which the table is still a
-function of the word (minimality as a block rule).
+function of the word (minimality as a block rule). The flipped words of each
+table are exactly the words in which $s_0$ is the starred symbol of one of the
+markers listed for its region in Table 1 of [3].
 
 ## What the computer checks and what the paper proves
 
-| Claimed by the computation (this repository) | Proved or cited in the paper |
+| Claimed by the computation (this repository) | Proved or cited in [3], Appendix B |
 | --- | --- |
-| Exact rational checks of the loop (S0) and of the partition of the right edge (S1). | (i) The cone condition implies hyperbolicity of the chain recurrent set $R(H_p)$ ([1], Prop. 10 / Thm. 9). |
-| On every closed piece of the right edge, a closed-box enclosure of $K_p$ whose edges all satisfy the cone condition with a positive exact margin (S2, S3). | (ii) The sign of $\operatorname{Re} y$ is preserved in the HOV region. |
-| Transport of the two labels through the space-time enclosure (S5). | (iii) $R$-structural stability and $J = R = K$, giving the horseshoe along the loop (S4). |
-| At the midpoint, every word touches exactly one conjugated label (S6), and the resulting rule (S7). | (iv) $\rho = h C h^{-1}$, which reduces the action to the upper half of the loop and the midpoint classification. |
+| Exact rational checks of the loop (S0) and of the partition of the right edge (S1). | (i) The cone condition implies uniform hyperbolicity on the chain recurrent set $R(H_p)$ ([3], B.2; [1], Theorem 9 and Lemma 11). |
+| On every closed piece of the right edge, a closed-box enclosure of $K_p$ whose edges all satisfy the cone condition with a positive exact margin (S2, S3). | (ii) $\operatorname{Re} y \ne 0$ on $K_{a,c}$ in HOV with $\operatorname{Re} c \le 0$, so the coding by the sign of $\operatorname{Re} y$ continues there ([3], Lemma B.1). |
+| Transport of the two labels through the space-time enclosure (S5). | (iii) $R$-structural stability and $K_p = R(H_p)$, giving the horseshoe along the loop (S4; [3], B.2; [1], Corollary 6). |
+| At the midpoint, every word touches exactly one conjugated label (S6), and the resulting rule (S7). | (iv) $\rho(\gamma) = h \circ \kappa \circ h^{-1}$, which reduces the action to the upper half of the loop and the midpoint classification ([3], (B.1); [1], proof of Theorem 3). |
 
 Step S4 is not computed. Every proof condition in the code is checked with
 `require`, which throws `ArgumentError`; nothing relies on `@assert`.
@@ -138,6 +142,8 @@ not check the enclosures themselves.
    [doi:10.1016/j.physd.2016.02.006](https://doi.org/10.1016/j.physd.2016.02.006)
 2. Zin Arai, supplemental materials (data, programs) for [1]:
    <https://github.com/zin-arai/zin-arai.github.io/tree/main/loops>
+3. Toshiki Usui, "Structure of decomposition by 2-cascades for SFTs and its
+   application to real Hénon maps", in preparation.
 
 ## License
 
